@@ -31,7 +31,6 @@ const StyledRightNav = styled.div`
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: 10px;
     font-weight: 200;
     opacity: 60%;
   }

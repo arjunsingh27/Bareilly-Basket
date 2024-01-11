@@ -27,6 +27,7 @@ background-clip: text;
     .header__search{
     display: flex;
     flex: 1;
+    max-width:500px;
     align-items: center;
    margin-right:40px;
     ${'' /* border-radius: 50px; */}
