@@ -13,6 +13,7 @@ const Carousel = () => {
   const handleNext = () => {
     setActiveSlide((prevSlide) =>
       Math.min(ProductBanners.length - 1, prevSlide + 1)
+      
     );
  
   };
