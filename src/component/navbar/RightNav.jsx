@@ -11,6 +11,7 @@ const StyledRightNav = styled.div`
     display: flex;
     align-items: center;
     flex-flow: row nowrap;
+    margin: 0;
   }
 
   ul > li {
@@ -21,7 +22,7 @@ const StyledRightNav = styled.div`
   ul > li > a {
     text-decoration: none;
     font-family: "Noto Sans JP", sans-serif;
-    font-family: "Roboto", sans-serif;
+    font-weight: 200;
     background: linear-gradient(
       50deg,
       #fff 22.31%,
@@ -31,17 +32,18 @@ const StyledRightNav = styled.div`
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    font-weight: 200;
-    opacity: 60%;
+    opacity: 0.6;
+    transition: opacity 0.3s ease-in-out;
   }
+
   ul > li > a:hover {
-    opacity: 100%;
+    opacity: 1;
   }
+
   .header__optionBasket {
     display: flex;
     align-items: center;
     color: white;
-    ${"" /* background-color:white; */}
   }
   .header__basketCount {
     margin-left: 10px;
@@ -58,53 +60,50 @@ const StyledRightNav = styled.div`
     flex-flow: column nowrap;
     background: linear-gradient(12deg, #0a192f -1.51%, #000 145.69%);
     position: fixed;
-    transform: ${({ open }) => (open ? "translateX(0)" : "translateX(100%)")};
     top: 0;
-    right: 0;
+    right: ${({ open }) => (open ? "0" : "-250px")}; /* Adjust the width */
     height: 100vh;
-    width: 300px;
-    transition: transform 0.3s ease-in-out;
-    padding-top: 3.5;
+    width: 250px;
+    transition: right 0.3s ease-in-out;
+    padding-top: 3.5px;
 
     ul {
       flex-direction: column;
-      margin-top: 80px;
+      padding-top: 70px;
+      padding-left: 50px;
     }
     li {
-      margin-left: 100px;
+      margin-left: 0;
     }
     a {
       color: black;
-      letter-spacing: 1px;
     }
   }
 `;
 
 const RightNav = ({ open }) => {
   return (
-    <>
-      <StyledRightNav className="header_container_right" open={open}>
-        <ul>
-          <li>
-            <Link to="/Home">Home</Link>
-          </li>
-          <li>
-            <Link to="/Products">Products</Link>
-          </li>
-          <li>
-            <Link to="/Contactus">Contact Us</Link>
-          </li>
-          <li>
-            <div className="header__optionBasket">
-              <Link to="/Checkout">
-                <ShoppingBasketIcon />
-              </Link>
-              <span className="header__optionLineTwo header__basketCount"></span>
-            </div>
-          </li>
-        </ul>
-      </StyledRightNav>
-    </>
+    <StyledRightNav className="header_container_right" open={open}>
+      <ul>
+        <li>
+          <Link to="/Home">Home</Link>
+        </li>
+        <li>
+          <Link to="/Products">Products</Link>
+        </li>
+        <li>
+          <Link to="/Contactus">Contact Us</Link>
+        </li>
+        <li>
+          <div className="header__optionBasket">
+            <Link to="/Checkout">
+              <ShoppingBasketIcon />
+            </Link>
+            <span className="header__optionLineTwo header__basketCount"></span>
+          </div>
+        </li>
+      </ul>
+    </StyledRightNav>
   );
 };
 
