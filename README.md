@@ -4,6 +4,24 @@
 Welcome to Get Sub – your go-to e-commerce platform for cutting-edge electronic goods! Explore our collection of smartwatches and accessories designed to enhance your modern lifestyle. From stylish wearables to top-notch accessories, we offer quality and innovation in every product. Shop securely, experience swift deliveries, and stay ahead in the tech game with Get Sub!
 
 
+## Installation
+### Clone the Repository
+```
+git clone git@github.com:arjunsingh27/Get_Sub_Client.git
+```
+### Change the directory  
+```
+cd Get_Sub_Client
+```
+### Install the Packages 
+```
+npm i
+```
+### Start the Project 
+```
+npm start
+```
+
 ## Authors
 Arjun Singh 
 
