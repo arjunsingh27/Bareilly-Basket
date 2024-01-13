@@ -36,7 +36,7 @@ Get Sub © 2024 by Arjun Singh is licensed under CC BY-SA 4.0
 
 Contributions are always welcome!
 
-See [Contribute.md](https://github.com/arjunsingh27/Get_Sub_Client) for ways to get started.
+See [Contribute.md]( https://github.com/arjunsingh27/Get_Sub_Client/blob/main/CONTRIBUTING.md) for ways to get started.
 
 Please adhere to this project's `code of conduct`.
 
