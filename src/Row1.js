@@ -26,6 +26,13 @@ const Row1=[
         "price":"200",
         "rating":"⭐⭐⭐⭐",
         "url": "./WhatsApp Image 2024-01-08 at 7.13.50 PM.jpeg"
+      },
+      {
+        "id": 5,
+        "title": "Apple Watch Series 8 Ultra ",
+        "price":"200",
+        "rating":"⭐⭐⭐⭐",
+        "url": "./WhatsApp Image 2024-01-08 at 7.13.50 PM.jpeg"
       }
        
 ]
