@@ -1,6 +1,6 @@
-const Row1=[
+const Row2=[
     {
-        "id": 5,
+        "id": 1,
         "title": "G-Shock Sports Smartwatch(Amoled Display) ",
         "price":"1999",
         "rating":"⭐⭐⭐⭐",
@@ -29,4 +29,4 @@ const Row1=[
       }
        
 ]
-export default Row1;
+export default Row2;
