@@ -2,6 +2,7 @@
 
 Thank you for considering contributing to our project! Please follow the guidelines below to contribute effectively.
 
+
 ## Fork the Repository
 
 1. Visit the GitHub repository you want to contribute to.
