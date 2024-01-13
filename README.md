@@ -36,6 +36,11 @@ Get Sub © 2024 by Arjun Singh is licensed under CC BY-SA 4.0
 
 Contributions are always welcome!
 
+#### Identify the Bug:
+
+Please clearly describe any bugs you find, including details such as steps to reproduce, expected behavior, and actual behavior. Once reported, we will assign the issue to you for resolution. 
+
+
 See [Contribute.md]( https://github.com/arjunsingh27/Get_Sub_Client/blob/main/CONTRIBUTING.md) for ways to get started.
 
 Please adhere to this project's `code of conduct`.
