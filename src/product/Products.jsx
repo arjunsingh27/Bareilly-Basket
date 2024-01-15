@@ -2,7 +2,7 @@ import React from 'react';
 import "./Products.css";
 import ProductItem from "../ProductItem";
 import Row1 from "../Row1.js";
-import Row2 from '../Row2.js';
+import Row2 from '../row2.js';
 
 const Products = () => {
   const row1Items = Row1.slice(0, 4);
