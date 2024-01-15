@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./component/navbar/Header.jsx";
-import Home from "./component/Home/Home.jsx";
+import Home from "./Home/Home.jsx";
 import Products from "./product/Products.jsx";
 import Checkout from "./Checkout.jsx";
 import Contactus from "./Contactus/Contactus.jsx";
