@@ -18,7 +18,11 @@ const App = () => {
         <div className="App">
           <TopHeadline />
           <Header />
-
+            <Switch>
+            <Route path="/">
+              <Home />
+            </Route>
+          </Switch>
 
           <Switch>
             <Route path="/Home">
