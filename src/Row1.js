@@ -40,6 +40,6 @@ const Row1 = [
     price: "200",
     rating: "⭐⭐⭐⭐",
     url: "./WhatsApp Image 2024-01-08 at 7.13.50 PM.jpeg",
-  },
+  }
 ];
 export default Row1;
