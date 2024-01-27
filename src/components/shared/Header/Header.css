@@ -1,0 +1,29 @@
+body {
+  background-color: black;
+  color: white;
+}
+.header_container {
+  display: flex;
+  height: 70px;
+  width: 100%;
+  background-color: #11235a;
+  align-items: center;
+  justify-content: space-around;
+}
+.logo_container {
+  width: 20%;
+}
+.menu_container {
+  width: 60%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.menu_names:hover {
+  color: #f2c94c;
+  cursor: pointer;
+}
+.menu-link {
+    text-decoration: none;
+    color: inherit; /* Inherit the color from the parent */
+    /* Add any other styling as needed */
+  }
