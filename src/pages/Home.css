@@ -1,10 +1,18 @@
-.productlist_container{
+.home_container{
     background-color: black;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /* margin-top: 50px; */
     background-color: aqua;
+    margin-left: 80px;
+    margin-right: 80px;
+}
+
+@media(max-width:769px){
+    .home_container{
+        margin-left: 20px;
+        margin-right: 20px;
+    }
 }

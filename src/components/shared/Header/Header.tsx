@@ -1,28 +1,32 @@
-import React from 'react';
-import './Header.css';
-import Menu from './Menu';
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Link } from 'react-router-dom';
+import React from "react";
+import Hamburger from "./Hamburger";
+import styled from "@emotion/styled";
+import Logo from "./Logo";
+const StyledHeader = styled.div`
 
-import AnchorIcon from '@mui/icons-material/Anchor';
+  .header_container {
+    display: flex;
+    height: 70px;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .logo_container {
+    width: 20%;
+    background-color: red;
+  }
+
+`;
 
 function Header() {
   return (
-    <div className="header_container">
-      <Link to="/"> 
-      <div className="logo_container"><AnchorIcon fontSize="large" color='disabled' /></div>
-      </Link>
-      <div className="menu_container">
-        <Menu />
+    <StyledHeader>
+      <div className="header_container">
+        <Logo />
+        <Hamburger />
       </div>
-      <Link to="/cart">
-        <div className="cart_container">
-          <ShoppingCartIcon fontSize="medium" color="primary" />
-        </div>
-      </Link>
-
-
-    </div>
+    </StyledHeader>
   );
 }
 
