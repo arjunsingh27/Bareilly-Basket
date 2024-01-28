@@ -14,7 +14,6 @@ const StyledHeader = styled.div`
 
   .logo_container {
     width: 20%;
-    background-color: red;
   }
 
 `;
