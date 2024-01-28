@@ -1,20 +1,21 @@
 
 .home_container{
-    background-color: black;
+    /* background-color: black; */
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    padding-left: 80px;
+    padding-right: 80px;
+    height: 100vh;
     justify-content: center;
-    background-color: aqua;
-    margin-left: 80px;
-    margin-right: 80px;
 
 }
 
 @media(max-width:769px){
     .home_container{
-        margin-left: 20px;
-        margin-right: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        justify-content:flex-start;
     }
+
 }

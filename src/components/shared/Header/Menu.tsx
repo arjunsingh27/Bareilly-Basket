@@ -9,12 +9,16 @@ const StyledMenu = styled.div<{ isOpen: boolean }>`
     text-decoration: none;
     color: inherit;
   }
+  .menu-link:hover{
+    text-decoration: none;
+    color: grey;
+  }
   .menu_container {
     height: 40px;
     display: flex;
     justify-content: space-evenly;
     align-items: center; 
-    background-color: rgb(233, 235, 237);
+    background-color: rgb(226 232 240);
     font-size: 1em;
   }
   
@@ -32,6 +36,13 @@ const StyledMenu = styled.div<{ isOpen: boolean }>`
       flex-direction: column;
       justify-content: flex-start;
       border-radius: 0px;
+      background-color: rgb(30 41 59);
+      
+    }
+    .menu_names {
+    padding: 10px;
+    align-items: left;
+    
     }
   }
   
