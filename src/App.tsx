@@ -10,6 +10,7 @@ import Cart from "./pages/Cart";
 import Register from "./pages/Register";
 import OrderHistory from "./pages/OrderHistory";
 import OrderDetails from "./pages/OrderDetails";
+import ProductDetail from "./pages/ProductDetail";
 
 const App = () => {
   return (
@@ -39,6 +40,7 @@ const App = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/orderhistory" element={<OrderHistory />} />
           <Route path="/orderdetails" element={<OrderDetails />} />
+          <Route path="/products/:productId" element={<ProductDetail />} />
         </Routes>
       </Router>
     </div>

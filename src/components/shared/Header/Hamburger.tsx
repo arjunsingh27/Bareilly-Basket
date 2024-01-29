@@ -35,19 +35,20 @@ const StyledHamburger = styled.div<StyledHamburgerProps>`
             transition: transform 0.3s ease; /* Added transition property */
         }
 
-        .burger_container > div:nth-child(1) {
+        .burger_container > div:nth-of-type(1) {
             transform-origin: 0px;
             transform: ${props => props.isOpen ? 'rotate(35deg)' : 'rotate(0deg)'};
-        }
-
-        .burger_container > div:nth-child(2) {
+          }
+          
+          .burger_container > div:nth-of-type(2) {
             transform: translateX(${props => props.isOpen ? '100px' : '0'});
-        }
-
-        .burger_container > div:nth-child(3) {
+          }
+          
+          .burger_container > div:nth-of-type(3) {
             transform-origin: 0%;
             transform: ${props => props.isOpen ? 'rotate(-35deg)' : 'rotate(0deg)'};
-        }
+          }
+          
     }
 `;
  
