@@ -12,18 +12,19 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ id, url, title, offerprice, price, rating }) => {
   return (
-    <div className="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-      <a className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
-        <img className="object-cover" src={url} alt={`Product: ${title}`} />
-        {offerprice && (
-          <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
-            {offerprice}% OFF
-          </span>
-        )}
-      </a>
+    <div className="relative m-5 md:m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+     <Link to={`/products/${id}`} className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"  >
+  <img className="object-cover h-400" src={url} alt={`Product: ${title}`} />
+  {offerprice && (
+    <span className="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">
+      {offerprice}% OFF
+    </span>
+  )}</Link>
+ 
+
       <div className="mt-4 px-5 pb-5">
         <a href="#">
-          <h5 className="text-xl tracking-tight text-slate-900">{title}</h5>
+          <h5 className="text-xl tracking-tight text-slate-900 min-h-20">{title}</h5>
         </a>
         <div className="mt-2 mb-5 flex items-center justify-between">
           <p>

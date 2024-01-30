@@ -18,8 +18,8 @@ const StyledMenu = styled.div<{ isOpen: boolean }>`
     display: flex;
     justify-content: space-evenly;
     align-items: center; 
-    background-color: rgb(226 232 240);
     font-size: 1em;
+    z-index: 19;
   }
   
 
@@ -36,7 +36,7 @@ const StyledMenu = styled.div<{ isOpen: boolean }>`
       flex-direction: column;
       justify-content: flex-start;
       border-radius: 0px;
-      background-color: rgb(30 41 59);
+     
       
     }
     .menu_names {
@@ -67,7 +67,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen }) => {
   return (
     <>
     <StyledMenu isOpen={isOpen}>
-      <div className="menu_container">
+      <div className="menu_container bg-slate-100 md:bg-slate-100 text-slate-100">
         <Link to="/products" className="menu-link">
           <div className="menu_names header_container_Products">Products</div>
         </Link>
