@@ -54,7 +54,7 @@ const ProductList: React.FC = () => {
         await new Promise((resolve) => setTimeout(resolve, 2000));
 
         // Fetch data from the backend
-        const response = await fetch('https://bareillybasket.onrender.com/api/productbanner//api/products/getProductById');
+        const response = await fetch('https://bareillybasket.onrender.com/api/productbanner/api/products/getProductById');
       
         const data = await response.json();
 
