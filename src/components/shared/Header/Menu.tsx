@@ -67,7 +67,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen }) => {
   return (
     <>
     <StyledMenu isOpen={isOpen}>
-      <div className="menu_container bg-slate-100 md:bg-slate-100 text-slate-100 md:text-slate-900">
+      <div className="menu_container bg-slate-100 md:bg-slate-100 text-slate-900 md:text-slate-900">
         <Link to="/products" className="menu-link">
           <div className="menu_names header_container_Products">Products</div>
         </Link>
