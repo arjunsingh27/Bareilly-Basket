@@ -54,11 +54,11 @@ const addToBasket = () => {
       </Link>
 
       <div className="mt-4 px-5 pb-5 ">
-        <a href="#">
+      
           <h5 className="text-xl tracking-tight text-slate-900 min-h-20">
             {title}
           </h5>
-        </a>
+        
         <div className="mt-2 mb-5 flex items-center justify-between ">
           <p>
             <span className="text-3xl font-bold text-slate-900">₹{price}</span>
@@ -69,8 +69,9 @@ const addToBasket = () => {
             )}
           </p>
         </div>
-
-        <button onClick={addToBasket} className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700  mx-auto w-full">
+        <Link
+        to={`/products/${id}`}>
+        <button className="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700  mx-auto w-full">
           <svg
             className="mt-1 w-3.5 h-4 me-2 "
             aria-hidden="true"
@@ -81,8 +82,9 @@ const addToBasket = () => {
             <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z" />
           </svg>
 
-          <span>Add to Cart</span>
+          <span>View Details</span>
         </button>
+        </Link>
       </div>
     </div>
   );

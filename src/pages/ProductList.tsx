@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "./ProductCard";
-
+import { MagnifyingGlass } from "react-loader-spinner";
 interface Product {
   id: number;
   url: string;
@@ -80,8 +80,6 @@ const ProductList: React.FC = () => {
     setProducts(initialProducts);
   };
 
-  
-
   const chunkArray = (arr: Product[], chunkSize: number) => {
     const chunkedArray = [];
     for (let i = 0; i < arr.length; i += chunkSize) {
@@ -95,7 +93,17 @@ const ProductList: React.FC = () => {
   return (
     <>
       {loading ? (
-        <p>Loading...</p>
+        <div className="flex min-h-dvh w-full justify-center mt-20">
+        <MagnifyingGlass  
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="magnifying-glass-loading"
+          wrapperStyle={{}}
+          wrapperClass="magnifying-glass-wrapper"
+          glassColor="#c0efff"
+          color="#e15b64"
+        /></div>
       ) : (
         <div className="grid md:grid-cols-4 h-max ">
           <div className="col-span-1 bg-slate-100 h-max pb-10">

@@ -13,7 +13,7 @@ root.render(
  
  <StateProvider initialState={initialState} reducer={reducer}>
     <App />
-    </StateProvider>
+ </StateProvider>
  
  
 );

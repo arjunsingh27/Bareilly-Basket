@@ -8,7 +8,6 @@ const StyledCarousel = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px;
   margin-top: 10px;
 
 }
@@ -131,7 +130,7 @@ const Carousel: React.FC<CarouselProps> = ({ ProductBanners }) => {
 
   return (
     <StyledCarousel>
-    <div className="carousel_container">
+    <div className="carousel_container ">
       <div className="buttons">
         <div className="left_arrow" onClick={handlePrevSlide}>
           <svg

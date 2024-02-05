@@ -13,7 +13,6 @@ import OrderDetails from "./pages/OrderDetails";
 import ProductDetail from "./pages/ProductDetail";
 import CheckOut from "./pages/CheckOut";
 const App = () => {
- 
   return (
     <div className="App">
       <Router>

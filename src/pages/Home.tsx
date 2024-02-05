@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Carousel from '../components/carousel/Carousel';
 import './Home.css';
-
+ 
  
 
 const LoadingContainer = styled.div`
@@ -78,13 +78,18 @@ const Home: React.FC = () => {
   }, []); // Empty dependency array to ensure the effect runs only once
 
   return (
-    <div className='home_container bg-slate-950'>
+    <div className='home_container bg-slate-950 '>
       {loading ? (
         <LoadingContainer>
           <LoadingSpinner />
         </LoadingContainer>
       ) : (
+        <div className="home">
+        <div className='h-dvh flex justify-center w-full pt-20'>
         <Carousel ProductBanners={productBanners} />
+        </div>
+        </div>
+    
       )}
     </div>
   );
