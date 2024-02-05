@@ -11,8 +11,9 @@ import Register from "./pages/Register";
 import OrderHistory from "./pages/OrderHistory";
 import OrderDetails from "./pages/OrderDetails";
 import ProductDetail from "./pages/ProductDetail";
-
+import CheckOut from "./pages/CheckOut";
 const App = () => {
+ 
   return (
     <div className="App">
       <Router>
@@ -41,6 +42,7 @@ const App = () => {
           <Route path="/orderhistory" element={<OrderHistory />} />
           <Route path="/orderdetails" element={<OrderDetails />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
+          <Route path="/checkout" element={<CheckOut />} />
         </Routes>
       </Router>
     </div>

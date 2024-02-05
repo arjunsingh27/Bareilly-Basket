@@ -4,6 +4,7 @@ import styled from '@emotion/styled';
 import Menu from './Menu';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from 'react-router-dom';
+import {useStateValue} from "../../../StateProvider";
 
 interface StyledHamburgerProps {
     isOpen: boolean;
@@ -66,7 +67,7 @@ width:60%;
 
 const Hamburger = () => {
     const [isOpen, setIsOpen] = useState(false);
-
+    const [{basket}] = useStateValue();
     const burgerClick = () => {
         setIsOpen(!isOpen);
     }
@@ -87,6 +88,8 @@ const Hamburger = () => {
             <StyledCart>
      <Link to="/cart">
          <ShoppingCartIcon fontSize="medium" color="primary" />
+         <span>{basket.length > 0 ? basket.length : ''}</span>
+  
      </Link>
  </StyledCart>
            

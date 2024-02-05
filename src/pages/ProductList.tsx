@@ -80,6 +80,8 @@ const ProductList: React.FC = () => {
     setProducts(initialProducts);
   };
 
+  
+
   const chunkArray = (arr: Product[], chunkSize: number) => {
     const chunkedArray = [];
     for (let i = 0; i < arr.length; i += chunkSize) {
@@ -142,7 +144,7 @@ const ProductList: React.FC = () => {
           </div>
 
           <section className="col-span-1 md:col-span-3  md:w-full w-dvw bg-slate-900">
-            <div className="container">
+            <div className="container mx-auto">
               <h2 className="text-slate-100 pt-10 text-xl lg:text-2xl">
                 Products
               </h2>

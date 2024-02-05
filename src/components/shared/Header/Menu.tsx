@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import {useStateValue} from "../../../StateProvider";
 
 const StyledMenu = styled.div<{ isOpen: boolean }>`
   .menu-link {
@@ -63,6 +64,9 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = ({ isOpen }) => {
   const [User, SetUser] = useState("Guest");
+  const [{basket}]= useStateValue();
+  console.log(basket.length);
+
 
   return (
     <>
@@ -84,6 +88,8 @@ const Menu: React.FC<MenuProps> = ({ isOpen }) => {
       <StyledCartPhone>
       <Link to="/cart">
          <ShoppingCartIcon fontSize="medium" color="primary" />
+         <span className="">{basket?.length}</span>
+          
      </Link>
       </StyledCartPhone>
       </div>
