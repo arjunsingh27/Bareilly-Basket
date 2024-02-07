@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 const StyledSlide = styled.div`
   .slide_notactive {
@@ -22,7 +23,7 @@ const StyledSlide = styled.div`
     border-radius: 10px;
     width: 600px;
     height: 300px;
-    object-fit: cover;
+    object-fit: contain;
   }
 
   @media (max-width: 768px) {
@@ -55,10 +56,12 @@ interface SlideProps {
 const Slide: React.FC<SlideProps> = ({ idx, title, url, cN }) => {
   return (
     <StyledSlide>
+      <Link to="/products">
       <div className={cN}>
         <div className="slide_title">{title}</div>
         <img src={url} alt={title} />
       </div>
+      </Link>
     </StyledSlide>
   );
 };

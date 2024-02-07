@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "65b68071bfb66b10a644d4b1"
+  },
+  "id": 1,
+  "title": "Ultra 3 AMOLED Smartwatch",
+  "url": "https://www.gonoise.com/cdn/shop/files/NoiseColorFitUltra3-JetBlack_1_480x.png?v=1695122756"
+},
+{
+  "_id": {
+    "$oid": "65b68071bfb66b10a644d4b2"
+  },
+  "id": 2,
+  "title": "Buds Venus ANC",
+  "url": "https://www.gonoise.com/cdn/shop/files/2_caa1a859-7da9-4d48-abd9-bce45ec9b7bf_480x.png?v=1690349629"
+},
+{
+  "_id": {
+    "$oid": "65b68071bfb66b10a644d4b3"
+  },
+  "id": 3,
+  "title": "ColorFit Icon 2 Smartwatch",
+  "url": "https://www.gonoise.com/cdn/shop/products/Icon2-4_480x.png?v=1681610912"
+}]

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import Carousel from '../components/carousel/Carousel';
-import './Home.css';
+import  ProductBanner  from '../bbpb.json';
  
  
 
@@ -54,28 +54,35 @@ const Home: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    // Simulate loading delay for 2 seconds (replace with your API call)
-    const fetchData = async () => {
-      try {
-        // Simulating loading delay (replace with your API call)
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+    setProductBanners(ProductBanner);
+    setLoading(false);
+  }, [ProductBanner]);
 
-        // Fetch data from the backend
-        const response = await fetch('https://bareillybasket.onrender.com/api/productbanner');
+ 
+
+  // useEffect(() => {
+  //   // Simulate loading delay for 2 seconds (replace with your API call)
+  //   const fetchData = async () => {
+  //     try {
+  //       // Simulating loading delay (replace with your API call)
+  //       await new Promise((resolve) => setTimeout(resolve, 2000));
+
+  //       // Fetch data from the backend
+  //       const response = await fetch('https://bareillybasket.onrender.com/api/productbanner');
       
-        const data = await response.json();
+  //       const data = await response.json();
 
-        setProductBanners(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      } finally {
-        // Set loading to false after fetching data
-        setLoading(false);
-      }
-    };
+  //       setProductBanners(data);
+  //     } catch (error) {
+  //       console.error('Error fetching data:', error);
+  //     } finally {
+  //       // Set loading to false after fetching data
+  //       setLoading(false);
+  //     }
+  //   };
 
-    fetchData();
-  }, []); // Empty dependency array to ensure the effect runs only once
+  //   fetchData();
+  // }, []); // Empty dependency array to ensure the effect runs only once
 
   return (
     <div className='home_container bg-slate-950 '>
