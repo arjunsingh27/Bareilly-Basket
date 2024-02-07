@@ -59,16 +59,12 @@ interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = ({ isOpen }) => {
-  
-  const [{ currentUser, basket }] = useStateValue();
-  const [user, setUser] = useState<string>("Guest");
+  const [{currentUser,basket}] = useStateValue();
+   
+  const [user, setUser] = useState<string>("");
 
   useEffect(() => {
-    if (currentUser) {
-      setUser(currentUser.username);
-    } else {
-      setUser("Guest");
-    }
+    setUser(currentUser.username)
   }, [currentUser]);
 
   return (
@@ -83,7 +79,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen }) => {
           </Link>
           <div className="menu_names header_container_auth">
             <Link to="/login" className="menu-link">
-              <span>{user ? user : "Login"}</span>
+              <span>{user}</span>
             </Link>
           </div>
           <StyledCartPhone>
@@ -97,4 +93,5 @@ const Menu: React.FC<MenuProps> = ({ isOpen }) => {
     </>
   );
 };
+
 export default Menu;

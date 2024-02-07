@@ -1,41 +1,34 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react'; // Import useEffect
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../../StateProvider';
 import { useNavigate } from 'react-router-dom';
-import { setCurrentUser, fetchUserBasket } from '../../reducer'; // Import both action creators
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
-
   const [{ currentUser }, dispatch] = useStateValue();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  useEffect(() => {
-     
-      dispatch(fetchUserBasket(currentUser.id));
- 
-  }, [currentUser, dispatch]); // Include dispatch as a dependency
-
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      // Await the response from the axios.post request
       const response = await axios.post('http://localhost:5002/login', { username, password });
-      console.log(response);
 
       if (response.data) {
-        // navigate('/products');
         const { userId, username } = response.data;
-
-        // Call the setCurrentUser action creator to update the user information in the global state
-        dispatch(setCurrentUser({ id: userId, username: username }));
-
+        dispatch({
+          type: 'SET_CURRENT_USER',
+          user: {
+            userId,
+            username,
+          }
+        });
+        navigate('/products');
         console.log('Logged in as:', username);
       } else {
-        console.error('Invalid response:', response.data);
+        console.error('Invalid response:', response);
         setErrorMessage('Error logging in. Please try again.');
       }
     } catch (error) {
