@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { useStateValue } from '../StateProvider';
+import { useStateValue } from '../../StateProvider';
 import { Link } from 'react-router-dom';
 import { DNA } from 'react-loader-spinner'
 
@@ -36,14 +36,14 @@ const ProductDetail: React.FC = () => {
     })
   }
 
-  //http://localhost:5002/api/products/getProductById
+  //
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         // Make a POST request to fetch product details using axios
         const response = await axios.post(
-          'https://bareillybasket.onrender.com/api/products/getProductById',
+          'http://localhost:5002/api/products/getProductById',
           { productId: parseInt(productId || '', 10) }
         );
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import ProductCard from "./ProductCard";
+import ProductCard from "../components/productlist/ProductCard";
 import { MagnifyingGlass } from "react-loader-spinner";
 interface Product {
   id: number;
@@ -43,7 +43,7 @@ const ProductList: React.FC = () => {
     }
   };
 
-  //
+  //https://bareillybasket.onrender.com
 
   useEffect(() => {
     // Simulate loading delay for 2 seconds (replace with your API call)
@@ -54,7 +54,7 @@ const ProductList: React.FC = () => {
 
         // Fetch data from the backend
         const response = await fetch(
-          "https://bareillybasket.onrender.com/api/products"
+          "http://localhost:5002/api/products"
         );
 
         const data = await response.json();

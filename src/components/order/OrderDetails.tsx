@@ -1,6 +1,6 @@
 import React from 'react'
 
-function OrderDetails() {
+const OrderDetails = () => {
   return (
     <div>OrderDetails</div>
   )

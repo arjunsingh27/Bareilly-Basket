@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useStateValue } from "../StateProvider";
+import { useStateValue } from "../../StateProvider";
 
 interface ProductCardProps {
   id: number;

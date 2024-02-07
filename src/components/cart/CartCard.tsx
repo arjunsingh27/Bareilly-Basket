@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useStateValue } from '../StateProvider';
+import { useStateValue } from '../../StateProvider';
 
 interface Product {
   id: number;

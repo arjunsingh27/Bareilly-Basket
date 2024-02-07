@@ -1,16 +1,18 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import {useStateValue} from "../../../StateProvider";
+import { useStateValue } from "../../../StateProvider";
+ 
+
+ 
 
 const StyledMenu = styled.div<{ isOpen: boolean }>`
   .menu-link {
     text-decoration: none;
     color: inherit;
   }
-  .menu-link:hover{
+  .menu-link:hover {
     text-decoration: none;
     color: grey;
   }
@@ -18,87 +20,81 @@ const StyledMenu = styled.div<{ isOpen: boolean }>`
     height: 40px;
     display: flex;
     justify-content: space-evenly;
-    align-items: center; 
+    align-items: center;
     font-size: 1em;
     z-index: 19;
   }
-  
 
   @media (max-width: 768px) {
     .menu_container {
       padding-top: 100px;
       position: fixed;
       top: 0px;
-      transform: translateX(${props => (props.isOpen ? '0px' : '200px')});
-      transition: transform 0.2s ease-out; /* Adjust the duration and timing function as needed */
+      transform: translateX(${(props) => (props.isOpen ? "0px" : "200px")});
+      transition: transform 0.2s ease-out;
       right: 0px;
       width: 40vw;
       height: 100vh;
       flex-direction: column;
       justify-content: flex-start;
       border-radius: 0px;
-     
-      
     }
     .menu_names {
-    padding: 10px;
-    align-items: left;
-    
+      padding: 10px;
+      align-items: left;
     }
   }
-  
 `;
 
 const StyledCartPhone = styled.div`
   display: none;
   @media (max-width: 768px) {
     display: block;
-    z-index:21;
+    z-index: 21;
   }
 `;
-
 
 interface MenuProps {
   isOpen: boolean;
 }
 
 const Menu: React.FC<MenuProps> = ({ isOpen }) => {
-  const [User, SetUser] = useState("Guest");
-  const [{basket}]= useStateValue();
-  console.log(basket.length);
+  
+  const [{ currentUser, basket }] = useStateValue();
+  const [user, setUser] = useState<string>("Guest");
 
+  useEffect(() => {
+    if (currentUser) {
+      setUser(currentUser.username);
+    } else {
+      setUser("Guest");
+    }
+  }, [currentUser]);
 
   return (
     <>
-    <StyledMenu isOpen={isOpen}>
-      <div className="menu_container bg-slate-100 md:bg-slate-100 text-slate-900 md:text-slate-900">
-        <Link to="/products" className="menu-link">
-          <div className="menu_names header_container_Products">Products</div>
-        </Link>
-        <Link to="/orderhistory" className="menu-link">
-          <div className="menu_names header_container_orders">Orders</div>
-        </Link>
-
-        <div className="menu_names header_container_auth">
-          <Link to="/login" className="menu-link">
-            <span>{User.slice(0, 6)}</span>
+      <StyledMenu isOpen={isOpen}>
+        <div className="menu_container bg-slate-100 md:bg-slate-100 text-slate-900 md:text-slate-900">
+          <Link to="/products" className="menu-link">
+            <div className="menu_names header_container_Products">Products</div>
           </Link>
-       
-      </div>
-      <StyledCartPhone>
-      <Link to="/cart">
-         <ShoppingCartIcon fontSize="medium" color="primary" />
-         <span className="">{basket?.length}</span>
-          
-     </Link>
-      </StyledCartPhone>
-      </div>
-    </StyledMenu>
-   
-
-    
- </>
+          <Link to="/orderhistory" className="menu-link">
+            <div className="menu_names header_container_orders">Orders</div>
+          </Link>
+          <div className="menu_names header_container_auth">
+            <Link to="/login" className="menu-link">
+              <span>{user ? user : "Login"}</span>
+            </Link>
+          </div>
+          <StyledCartPhone>
+            <Link to="/cart">
+              <ShoppingCartIcon fontSize="medium" color="primary" />
+              <span className="">{basket?.length}</span>
+            </Link>
+          </StyledCartPhone>
+        </div>
+      </StyledMenu>
+    </>
   );
 };
-
 export default Menu;
