@@ -14,7 +14,7 @@ const Login: React.FC = () => {
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5002/login', { username, password });
+      const response = await axios.post('https://bareillybasket.onrender.com/login', { username, password });
 
       if (response.data) {
         const { userId, username } = response.data;

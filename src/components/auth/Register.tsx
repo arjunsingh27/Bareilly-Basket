@@ -28,7 +28,7 @@ const Register: React.FC = () => {
   const registerUser = async (username: string, password: string): Promise<boolean> => {
     try {
       // Perform user registration
-      await axios.post('http://localhost:5002/register', { username, password });
+      await axios.post('https://bareillybasket.onrender.com/register', { username, password });
       return true;
     } catch (error) {
       console.error('Error registering user:', error);

@@ -54,7 +54,7 @@ const ProductList: React.FC = () => {
 
         // Fetch data from the backend
         const response = await fetch(
-          "http://localhost:5002/api/products"
+          "https://bareillybasket.onrender.com/api/products"
         );
 
         const data = await response.json();

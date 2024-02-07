@@ -43,7 +43,7 @@ const ProductDetail: React.FC = () => {
       try {
         // Make a POST request to fetch product details using axios
         const response = await axios.post(
-          'http://localhost:5002/api/products/getProductById',
+          'https://bareillybasket.onrender.com/api/products/getProductById',
           { productId: parseInt(productId || '', 10) }
         );
 
