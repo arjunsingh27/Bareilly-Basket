@@ -1,4 +1,4 @@
-import axios from 'axios';
+import instance from '../../axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../../StateProvider';
@@ -10,11 +10,11 @@ const Login: React.FC = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-
+//
   const handleLogin = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      const response = await axios.post('https://bareillybasket.onrender.com/login', { username, password });
+      const response = await instance.post('/login', { username, password });
 
       if (response.data) {
         const { userId, username } = response.data;

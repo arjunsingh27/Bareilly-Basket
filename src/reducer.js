@@ -1,8 +1,10 @@
+//intial state of the app
+import instance from "./axios";
 export const initialState = {
     currentUser: {
-      username: 'Guest',
+      username: 'Login',
       userId: null,
-    }, // Initially no user is logged in
+    }, 
     basket: [],
   };
   
@@ -16,25 +18,43 @@ export const initialState = {
             userId: action.user.userId
           }
         };
-      case 'ADD_TO_BASKET':
-        return {
-          ...state,
-          basket: [...state.basket, action.item],
-        };
+      case 'LOGOUT':
+          return {
+            ...state,
+            currentUser: {
+              username: 'Login',
+              userId: null
+            },
+            basket: [],
+          };
+       case 'ADD_TO_BASKET':
+            instance.post(`/addtobasket/${action.payload.user.userId}`, action.payload.item)
+              .then(response => {
+               console.log('Item added to basket:', response.data);
+              })
+              .catch(error => {
+                console.error('Error adding item to basket:', error);
+                
+              });
+            return{
+              ...state,
+              basket: [...state.basket, action.payload.item]
+            }
+          
+          
       case 'REMOVE_FROM_BASKET':
-        let newBasket = [...state.basket];
-        const index = state.basket.findIndex((basketItem) => basketItem.id === action.id);
-        if (index >= 0) {
-          newBasket.splice(index, 1);
-        } else {
-          console.warn(
-            `Can't remove product (id: ${action.id}) as it's not in the basket!`
-          );
-        }
-        return {
-          ...state,
-          basket: newBasket,
-        };
+           
+            const removeItemFromBasket = async () => {
+              try {
+                const response = await instance.post(`/removefrombasket/${action.payload.user.userId}`, action.payload.item);
+                console.log('Item removed from basket:', response.data);
+              } catch (error) {
+                console.error('Error removing item from basket:', error);
+              }
+            };
+            removeItemFromBasket();
+            break;
+           
       default:
         return state;
     }

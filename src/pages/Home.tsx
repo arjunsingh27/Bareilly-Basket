@@ -56,7 +56,7 @@ const Home: React.FC = () => {
   useEffect(() => {
     setProductBanners(ProductBanner);
     setLoading(false);
-  }, [ProductBanner]);
+  }, []);
 
  
 

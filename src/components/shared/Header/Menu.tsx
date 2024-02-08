@@ -3,9 +3,6 @@ import { Link } from "react-router-dom";
 import styled from "@emotion/styled";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { useStateValue } from "../../../StateProvider";
- 
-
- 
 
 const StyledMenu = styled.div<{ isOpen: boolean }>`
   .menu-link {
@@ -59,38 +56,48 @@ interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = ({ isOpen }) => {
-  const [{currentUser,basket}] = useStateValue();
-   
+  const [{ currentUser, basket }, dispatch] = useStateValue();
   const [user, setUser] = useState<string>("");
 
   useEffect(() => {
-    setUser(currentUser.username)
+    setUser(currentUser.username.split("@")[0]);
   }, [currentUser]);
 
+  const handleLogout = () => {
+    dispatch({
+      type: "LOGOUT"
+    });
+  };
+
   return (
-    <>
-      <StyledMenu isOpen={isOpen}>
-        <div className="menu_container bg-slate-100 md:bg-slate-100 text-slate-900 md:text-slate-900">
-          <Link to="/products" className="menu-link">
-            <div className="menu_names header_container_Products">Products</div>
-          </Link>
-          <Link to="/orderhistory" className="menu-link">
-            <div className="menu_names header_container_orders">Orders</div>
-          </Link>
-          <div className="menu_names header_container_auth">
+    <StyledMenu isOpen={isOpen}>
+      <div className="menu_container bg-slate-100 md:bg-slate-100 text-slate-900 md:text-slate-900">
+        <Link to="/products" className="menu-link">
+          <div className="menu_names header_container_Products">Products</div>
+        </Link>
+        <Link to="/orderhistory" className="menu-link">
+          <div className="menu_names header_container_orders">Orders</div>
+        </Link>
+        <div className="menu_names header_container_auth">
+          {currentUser.userId != null ? (
+            <>
+              <span className="pr-1">{user}</span>
+              <span onClick={handleLogout} className="pl-1 cursor-pointer">Logout</span>
+            </>
+          ) : (
             <Link to="/login" className="menu-link">
-              <span>{user}</span>
+              Login
             </Link>
-          </div>
-          <StyledCartPhone>
-            <Link to="/cart">
-              <ShoppingCartIcon fontSize="medium" color="primary" />
-              <span className="">{basket?.length}</span>
-            </Link>
-          </StyledCartPhone>
+          )}
         </div>
-      </StyledMenu>
-    </>
+        <StyledCartPhone>
+          <Link to="/cart">
+            <ShoppingCartIcon fontSize="medium" color="primary" />
+            <span className="">{basket?.length}</span>
+          </Link>
+        </StyledCartPhone>
+      </div>
+    </StyledMenu>
   );
 };
 

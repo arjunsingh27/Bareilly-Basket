@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "../components/productlist/ProductCard";
+import instance from "../axios";
 import { MagnifyingGlass } from "react-loader-spinner";
 interface Product {
   id: number;
@@ -51,17 +52,10 @@ const ProductList: React.FC = () => {
       try {
         // Simulating loading delay (replace with your API call)
         await new Promise((resolve) => setTimeout(resolve, 2000));
-
         // Fetch data from the backend
-        const response = await fetch(
-          "https://bareillybasket.onrender.com/api/products"
-        );
-
-        const data = await response.json();
-
-        setProducts(data);
-        setInitialProducts(data);
-        console.log("local host");
+        const response = await instance.get("/api/products");
+        setProducts(response.data);
+        setInitialProducts(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
       } finally {

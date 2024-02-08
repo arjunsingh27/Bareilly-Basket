@@ -1,5 +1,5 @@
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useEffect } from "react";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import "./App.css";
 import Header from "./components/shared/Header/Header";
 import Footer from "./components/shared/Footer/Footer";
@@ -12,7 +12,22 @@ import OrderHistory from "./components/order/OrderHistory";
 import OrderDetails from "./components/order/OrderDetails";
 import ProductDetail from "./components/productlist/ProductDetail";
 import CheckOut from "./components/cart/CheckOut";
+ 
+ 
+
 const App = () => {
+  // const [{ currentUser }, dispatch] = useStateValue();
+ 
+  
+  // useEffect(() => {
+  //   if(currentUser.username === "Login") {
+     
+  //     setTimeout(() => {
+  //        alert("Please Login to continue");
+  //     }, 3000);
+  //   }
+  // }, [currentUser.username]);
+
   return (
     <div className="App">
       <Router>
@@ -29,7 +44,7 @@ const App = () => {
           />
           <Route path="/login" element={<Login />} />
           <Route
-            path="/Register"
+            path="/register"
             element={
               <>
                 <Register />

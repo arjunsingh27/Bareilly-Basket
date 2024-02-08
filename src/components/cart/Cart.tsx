@@ -1,8 +1,21 @@
 import CartCard from './CartCard';
 import Subtotal from './Subtotal';
+import { useStateValue } from '../../StateProvider';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 const Cart: React.FC = () => {
+  const navigate = useNavigate();
+  const [{currentUser}, dispatch] = useStateValue();
+  useEffect(() => {
+    if(currentUser.userId == null) {
+      setTimeout(() => {
+        alert("Please Login to continue");
+        navigate('/login');
+      },0);
+    }
+  },[]);
 
 
   return (

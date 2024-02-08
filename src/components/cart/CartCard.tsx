@@ -11,7 +11,7 @@ interface Product {
 }
 
 const CartCard: React.FC = () => {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{currentUser, basket }, dispatch] = useStateValue();
   const [products, setProducts] = useState<Product[]>();
 
   useEffect(() => {
@@ -20,8 +20,16 @@ const CartCard: React.FC = () => {
 
   const removeFromCart = (productId: number) => {
     dispatch({
-      type: 'REMOVE_FROM_BASKET',
-      id: productId,
+      type: "REMOVE_FROM_BASKET",
+      payload: {
+        user: {
+          userId: currentUser.userId,
+          username: currentUser.username,
+        },
+        item: {
+          id: productId,
+        },
+      },
     });
   };
 

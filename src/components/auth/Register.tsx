@@ -1,6 +1,6 @@
-import axios from 'axios';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import instance from '../../axios';
 
 const Register: React.FC = () => {
   const [username, setUsername] = useState('');
@@ -28,7 +28,7 @@ const Register: React.FC = () => {
   const registerUser = async (username: string, password: string): Promise<boolean> => {
     try {
       // Perform user registration
-      await axios.post('https://bareillybasket.onrender.com/register', { username, password });
+      await instance.post('/register', { username, password });
       return true;
     } catch (error) {
       console.error('Error registering user:', error);
