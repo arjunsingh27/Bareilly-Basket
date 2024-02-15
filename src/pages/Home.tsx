@@ -92,7 +92,7 @@ const Home: React.FC = () => {
         </LoadingContainer>
       ) : (
         <div className="home">
-        <div className='h-dvh flex justify-center w-full pt-20'>
+        <div className='h-dvh flex justify-center w-full pt-40 md:pt-20'>
         <Carousel ProductBanners={productBanners} />
         </div>
         </div>
