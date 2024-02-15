@@ -17,16 +17,17 @@ const Login: React.FC = () => {
       const response = await instance.post('/login', { username, password });
 
       if (response.data) {
-        const { userId, username } = response.data;
+        const { userId, username , basket} = response.data;
         dispatch({
           type: 'SET_CURRENT_USER',
           user: {
             userId,
             username,
+            basket,
           }
         });
         navigate('/products');
-        console.log('Logged in as:', username);
+        console.log('Logged in as:', username + ' with id:', userId , 'basket:', basket);
       } else {
         console.error('Invalid response:', response);
         setErrorMessage('Error logging in. Please try again.');

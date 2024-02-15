@@ -67,7 +67,7 @@ width:60%;
 
 const Hamburger = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [{basket}] = useStateValue();
+    const [{currentUser}] = useStateValue();
     const burgerClick = () => {
         setIsOpen(!isOpen);
     }
@@ -88,7 +88,7 @@ const Hamburger = () => {
             <StyledCart>
      <Link to="/cart">
          <ShoppingCartIcon fontSize="medium" color="primary" />
-         <span>{basket.length > 0 ? basket.length : ''}</span>
+         <span>{currentUser.basket?.length > 0 ? currentUser.basket?.length : ''}</span>
   
      </Link>
  </StyledCart>

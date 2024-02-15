@@ -11,12 +11,13 @@ interface Product {
 }
 
 const CartCard: React.FC = () => {
-  const [{currentUser, basket }, dispatch] = useStateValue();
+  const [{currentUser }, dispatch] = useStateValue();
   const [products, setProducts] = useState<Product[]>();
 
   useEffect(() => {
-    setProducts(basket);
-  }, [basket]);
+    setProducts(currentUser.basket);
+    console.log(currentUser.basket);
+  }, [currentUser]);
 
   const removeFromCart = (productId: number) => {
     dispatch({

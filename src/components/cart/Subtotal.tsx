@@ -2,6 +2,7 @@ import React from 'react'
 import { useStateValue } from '../../StateProvider'
 import { useEffect ,useState } from 'react';
 import { Link } from 'react-router-dom';
+ 
 
 interface Product {
     id: number;
@@ -14,13 +15,13 @@ interface Product {
  
 
   const Subtotal: React.FC = () => {
-    const [{ basket }] = useStateValue();
+    const [{ currentUser }] = useStateValue();
     const [subtotal, setSubtotal] = useState<Product[]>([]);
     const [total, setTotal] = useState<number>(0);
   
     useEffect(() => {
-      setSubtotal(basket);
-    }, [basket]);
+      setSubtotal(currentUser.basket);
+    }, [currentUser.basket]);
   
     useEffect(() => {
       const calculatedTotal = calculateSubtotal();

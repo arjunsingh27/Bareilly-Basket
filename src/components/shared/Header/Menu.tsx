@@ -56,7 +56,7 @@ interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = ({ isOpen }) => {
-  const [{ currentUser, basket }, dispatch] = useStateValue();
+  const [{ currentUser}, dispatch] = useStateValue();
   const [user, setUser] = useState<string>("");
 
   useEffect(() => {
@@ -93,7 +93,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen }) => {
         <StyledCartPhone>
           <Link to="/cart">
             <ShoppingCartIcon fontSize="medium" color="primary" />
-            <span className="">{basket?.length}</span>
+            <span className="">{currentUser.basket?.length}</span>
           </Link>
         </StyledCartPhone>
       </div>

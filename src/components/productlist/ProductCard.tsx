@@ -20,7 +20,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   rating,
 }) => {
 
-const [{basket}, dispatch] = useStateValue();
+const [{currentUser}, dispatch] = useStateValue();
 
 const addToBasket = () => {
   dispatch({

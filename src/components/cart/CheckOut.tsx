@@ -11,12 +11,12 @@ interface Product {
 }
 
 const CheckOut: React.FC = () => {
-  const [{ basket }, dispatch] = useStateValue();
+  const [{ currentUser }, dispatch] = useStateValue();
   const [products, setProducts] = useState<Product[]>();
 
   useEffect(() => {
-    setProducts(basket);
-  }, [basket]);
+    setProducts(currentUser.basket);
+  }, [currentUser.basket]);
 
   const removeFromCart = (productId: number) => {
     dispatch({
