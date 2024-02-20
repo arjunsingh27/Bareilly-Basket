@@ -1,10 +1,8 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/styled';
 import Menu from './Menu';
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import { Link } from 'react-router-dom';
-import {useStateValue} from "../../../StateProvider";
 
 interface StyledHamburgerProps {
     isOpen: boolean;
@@ -49,25 +47,24 @@ const StyledHamburger = styled.div<StyledHamburgerProps>`
             transform-origin: 0%;
             transform: ${props => props.isOpen ? 'rotate(-35deg)' : 'rotate(0deg)'};
           }
-          
     }
 `;
- 
+
 const StyledCart = styled.div`
   @media (max-width: 768px) {
- 
       display: none;
-   
-  }`;
-const StyledMenu=styled.div`
-width:60%;
+  }
 `;
 
-
+const StyledMenu = styled.div`
+    width: 60%;
+`;
 
 const Hamburger = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const [{currentUser}] = useStateValue();
+    const currentUser = sessionStorage.getItem('currentUser');
+    const user = currentUser ? JSON.parse(currentUser) : null;
+    
     const burgerClick = () => {
         setIsOpen(!isOpen);
     }
@@ -85,14 +82,13 @@ const Hamburger = () => {
             <StyledMenu>
                 <Menu isOpen={isOpen} />
             </StyledMenu>
+            
             <StyledCart>
-     <Link to="/cart">
-         <ShoppingCartIcon fontSize="medium" color="primary" />
-         <span>{currentUser.basket?.length > 0 ? currentUser.basket?.length : ''}</span>
-  
-     </Link>
- </StyledCart>
-           
+                <Link to="/cart">
+                    <ShoppingCartIcon fontSize="medium" color="primary" />
+                    <span>{user && user.basket ? user.basket.length : 0}</span>
+                </Link>
+            </StyledCart>
         </>
     );
 }

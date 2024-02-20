@@ -56,11 +56,15 @@ interface MenuProps {
 }
 
 const Menu: React.FC<MenuProps> = ({ isOpen }) => {
-  const [{ currentUser}, dispatch] = useStateValue();
+  const [{}, dispatch] = useStateValue(); // eslint-disable-line
+  const currentUser = sessionStorage.getItem('currentUser');
   const [user, setUser] = useState<string>("");
 
   useEffect(() => {
-    setUser(currentUser.username.split("@")[0]);
+    if (currentUser) {
+      const parsedUser = JSON.parse(currentUser);
+      setUser(parsedUser.username.split("@")[0]);
+    }
   }, [currentUser]);
 
   const handleLogout = () => {
@@ -71,7 +75,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen }) => {
 
   return (
     <StyledMenu isOpen={isOpen}>
-      <div className="menu_container bg-slate-100 md:bg-slate-100 text-slate-900 md:text-slate-900">
+      <div className="menu_container">
         <Link to="/products" className="menu-link">
           <div className="menu_names header_container_Products">Products</div>
         </Link>
@@ -79,7 +83,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen }) => {
           <div className="menu_names header_container_orders">Orders</div>
         </Link>
         <div className="menu_names header_container_auth">
-          {currentUser.userId != null ? (
+          {currentUser ? (
             <>
               <span className="pr-1">{user}</span>
               <span onClick={handleLogout} className="pl-1 cursor-pointer">Logout</span>
@@ -93,7 +97,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen }) => {
         <StyledCartPhone>
           <Link to="/cart">
             <ShoppingCartIcon fontSize="medium" color="primary" />
-            <span className="">{currentUser.basket?.length}</span>
+            <span className="">{currentUser ? JSON.parse(currentUser).basket?.length : 0}</span>
           </Link>
         </StyledCartPhone>
       </div>

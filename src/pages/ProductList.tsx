@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import ProductCard from "../components/productlist/ProductCard";
 import instance from "../axios";
 import { MagnifyingGlass } from "react-loader-spinner";
+ 
 interface Product {
   id: number;
   url: string;
@@ -51,6 +52,7 @@ const ProductList: React.FC = () => {
     const fetchData = async () => {
       try {
         // Simulating loading delay (replace with your API call)
+        
         await new Promise((resolve) => setTimeout(resolve, 2000));
         // Fetch data from the backend
         const response = await instance.get("/api/products");
@@ -61,9 +63,10 @@ const ProductList: React.FC = () => {
       } finally {
         // Set loading to false after fetching data
         setLoading(false);
+        
       }
     };
-
+    
     fetchData();
   }, []);
 

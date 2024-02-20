@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useStateValue } from "../../StateProvider";
+ 
 
 interface ProductCardProps {
   id: number;
@@ -20,25 +20,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
   rating,
 }) => {
 
-const [{currentUser}, dispatch] = useStateValue();
-
-const addToBasket = () => {
-  dispatch({
-    type: 'ADD_TO_BASKET',
-    item: {
-      id: id,
-      title: title,
-      url:  url,
-      price: price,
-      rating: rating,
-    },
-  })
-}
+ 
 
   return (
     <div className="relative m-5 md:m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
-      <Link
-        to={`/products/${id}`}
+      <div
+         
         className="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl"
       >
         <img
@@ -51,7 +38,7 @@ const addToBasket = () => {
             {offerprice}% OFF
           </span>
         )}
-      </Link>
+      </div>
 
       <div className="mt-4 px-5 pb-5 ">
       
