@@ -96,23 +96,40 @@ const reducer = (state, action) => {
           });
       
 
-    case "REMOVE_FROM_BASKET":
-      // Asynchronous action, using async/await
-      const removeItemFromBasket = async () => {
-        try {
-          const response = await instance.post(
-            `/removefrombasket/${action.payload.user.userId}`,
-            action.payload.item
-          );
-          console.log("Item removed from basket:", response.data);
-        } catch (error) {
-          console.error("Error removing item from basket:", error);
-        }
-      };
-      // Executing the async function
-      removeItemFromBasket();
-      // Returning the state immediately, as the actual state update is handled asynchronously
-      return state;
+          case "REMOVE_FROM_BASKET":
+            // Asynchronous action, using async/await
+            const removeItemFromBasket = async () => {
+              try {
+                // Send a POST request to remove the item from the basket
+                const response = await instance.post(
+                  `/removefrombasket/${action.payload.user.userId}`,
+                  action.payload.item
+                );
+                // console.log("Item removed from basket:", response.data.basket);
+                // Update the current user's basket in sessionStorage with the updated basket received from the server
+                const updatedUser = {
+                  ...JSON.parse(sessionStorage.getItem('currentUser')),
+                  basket: response.data.basket
+                };
+                sessionStorage.setItem('currentUser', JSON.stringify(updatedUser));
+          
+                // Reload the window after updating the basket
+                window.location.reload();
+          
+                // Log success message
+                console.log("Item removed from basket:ss", response.data.basket);
+              } catch (error) {
+                // Log error message if removal fails
+                console.error("Error removing item from basket:", error);
+              }
+            };
+          
+            // Execute the async function to remove the item from the basket
+            removeItemFromBasket();
+          
+            // Return the state immediately, as the actual state update is handled asynchronously
+            return state;
+          
 
     default:
       return state;
