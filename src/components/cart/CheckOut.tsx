@@ -20,8 +20,16 @@ const CheckOut: React.FC = () => {
 
   const removeFromCart = (productId: number) => {
     dispatch({
-      type: 'REMOVE_FROM_BASKET',
-      id: productId,
+      type: "REMOVE_FROM_BASKET",
+      payload: {
+        user: {
+          userId: currentUser.userId,
+          username: currentUser.username,
+        },
+        item: {
+          id: productId,
+        },
+      },
     });
   };
 
