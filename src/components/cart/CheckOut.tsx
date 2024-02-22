@@ -3,6 +3,7 @@ import { useStateValue } from '../../StateProvider';
 import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 import "./CheckOut.css";
 import instance from '../../axios'; // Import Axios
+import { useNavigate } from 'react-router-dom';
 
 interface Product {
   id: number;
@@ -14,6 +15,7 @@ interface Product {
 }
 
 const CheckOut: React.FC = () => {
+   
   const [{ currentUser }, dispatch] = useStateValue();
   const [products, setProducts] = useState<Product[]>([]);
   const stripe = useStripe()!;
@@ -23,6 +25,7 @@ const CheckOut: React.FC = () => {
   const [error, setError] = useState<any>(null);
   const [disabled, setDisabled] = useState<boolean>(true);
   const [clientSecret, setClientSecret] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     setProducts(currentUser.basket || []);
@@ -37,7 +40,15 @@ const CheckOut: React.FC = () => {
         total: total,
         basket: products,
       });
+      console.log('Client secret:', response.data.clientSecret);
       setClientSecret(response.data.clientSecret);
+      console.log(clientSecret);
+       setProcessing(false);
+       setSucceeded(true);
+       setError(null);
+       setProcessing(false);
+       navigate('/orderhistory');
+
     } catch (error) {
       console.error('Error fetching client secret:', error);
     }
@@ -62,24 +73,30 @@ const CheckOut: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setProcessing(true);
-    await getClientSecret();
-    if (clientSecret && elements) {
-      const payload = await stripe.confirmCardPayment(clientSecret, {
-        payment_method: {
-          card: elements.getElement(CardElement)!,
-        },
-      });
-      if (payload.error) {
-        setError(`Payment failed: ${payload.error.message}`);
-        setProcessing(false);
-      } else {
-        setSucceeded(true);
-        setError(null);
-        setProcessing(false);
-        // You may want to redirect to a different page upon successful payment
-      }
-    }
+    await getClientSecret() 
+    console.log('Client secret:', clientSecret);
+     
+    
+    // if (clientSecret !== null && elements && elements.getElement(CardElement) !== null) {
+    //   console.log('Client secret:', clientSecret);
+    //   const payload = await stripe.confirmCardPayment(clientSecret!, {
+    //     payment_method: {
+    //       card: elements.getElement(CardElement)!,
+    //     },
+    //   });
+     
+    //   if (payload.error) {
+    //     setError(`Payment failed: ${payload.error.message}`);
+    //     setProcessing(false);
+    //   } else {
+    //     setSucceeded(true);
+    //     setError(null);
+    //     setProcessing(false);
+    //     navigate('/orders');
+    //   }
+    // }
   };
+  
 
   const handleChange = (event: any) => {
     setDisabled(event.empty);
@@ -124,7 +141,9 @@ const CheckOut: React.FC = () => {
             <div className="pricecontainer">
               <p>Pay$ {calculateSubtotal()}</p>
             </div>
-            <button type='submit' disabled={disabled || succeeded || processing}>Pay Now</button>
+            <button disabled={processing || disabled || succeeded}>
+                  <span>{processing ? <p> Processing </p> : "Buy Now"} </span>
+                </button>
             {error && <div>{error}</div>}
           </form>
         </div>
