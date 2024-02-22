@@ -17,13 +17,14 @@ const Login: React.FC = () => {
       const response = await instance.post('/login', { username, password });
 
       if (response.data) {
-        const { userId, username , basket} = response.data;
+        const { userId, username , basket ,orders} = response.data;
         dispatch({
           type: 'SET_CURRENT_USER',
           user: {
             userId,
             username,
             basket,
+            orders
           }
         });
         navigate('/products');
