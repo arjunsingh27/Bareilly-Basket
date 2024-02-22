@@ -1,9 +1,9 @@
 import axios from "axios";
 
 const instance = axios.create({
-    baseURL:'http://localhost:5002'
+    baseURL:'https://bareillybasket.onrender.com'
 
 });
 
 export default instance;
-//https://bareillybasket.onrender.com
+//http:localhost:5002
