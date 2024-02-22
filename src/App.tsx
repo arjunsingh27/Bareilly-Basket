@@ -13,6 +13,11 @@ import OrderDetails from "./components/order/OrderDetails";
 import ProductDetail from "./components/productlist/ProductDetail";
 import CheckOut from "./components/cart/CheckOut";
 import { useStateValue } from "./StateProvider"; // Import your state provider
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+
+// Declare stripePromise outside of the component
+const promise = loadStripe("pk_test_51Oac52SElcdkcjvWeNAwbczbaOp8a9P0Z5Q1a2fNNBIMe4rJmv5faEnUxTSQ5jnFIcnp7g4XkJKTrMNtZu3NBizB00S56gtLsd");
 
 const App = () => {
   const [{}, dispatch] = useStateValue(); // Destructure the state value from your state provider
@@ -55,7 +60,16 @@ const App = () => {
           <Route path="/orderhistory" element={<OrderHistory />} />
           <Route path="/orderdetails" element={<OrderDetails />} />
           <Route path="/products/:productId" element={<ProductDetail />} />
-          <Route path="/checkout" element={<CheckOut />} />
+
+          {/* Place the Route inside Routes and outside any JSX */}
+          <Route
+            path="/checkout"
+            element={
+              <Elements stripe={promise}>
+                <CheckOut />
+              </Elements>
+            }
+          />
         </Routes>
       </Router>
     </div>

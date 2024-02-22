@@ -8,6 +8,7 @@ export const initialState = {
     username: "Login",
     userId: null,
     basket: [],
+    orders: [],
   },
 };
 

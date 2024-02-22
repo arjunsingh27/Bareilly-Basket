@@ -75,7 +75,7 @@ const Menu: React.FC<MenuProps> = ({ isOpen }) => {
 
   return (
     <StyledMenu isOpen={isOpen}>
-      <div className="menu_container">
+      <div className="menu_container bg-slate-300">
         <Link to="/products" className="menu-link">
           <div className="menu_names header_container_Products">Products</div>
         </Link>

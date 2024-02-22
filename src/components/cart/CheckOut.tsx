@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useStateValue } from '../../StateProvider';
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import "./CheckOut.css";
+import instance from '../../axios'; // Import Axios
 
 interface Product {
   id: number;
@@ -12,11 +15,34 @@ interface Product {
 
 const CheckOut: React.FC = () => {
   const [{ currentUser }, dispatch] = useStateValue();
-  const [products, setProducts] = useState<Product[]>();
+  const [products, setProducts] = useState<Product[]>([]);
+  const stripe = useStripe()!;
+  const elements = useElements();
+  const [succeeded, setSucceeded] = useState<boolean>(false);
+  const [processing, setProcessing] = useState<boolean>(false);
+  const [error, setError] = useState<any>(null);
+  const [disabled, setDisabled] = useState<boolean>(true);
+  const [clientSecret, setClientSecret] = useState<string | null>(null);
 
   useEffect(() => {
-    setProducts(currentUser.basket);
+    setProducts(currentUser.basket || []);
   }, [currentUser.basket]);
+
+  const getClientSecret = async () => {
+    try {
+      const total = calculateSubtotal(); // Calculate subtotal synchronously
+      console.log('Total:', total);
+      const response = await instance.post<{ clientSecret: string }>('/payments/create', {
+        userId: currentUser.userId,
+        total: total,
+        basket: products,
+      });
+      setClientSecret(response.data.clientSecret);
+    } catch (error) {
+      console.error('Error fetching client secret:', error);
+    }
+  };
+  
 
   const removeFromCart = (productId: number) => {
     dispatch({
@@ -33,11 +59,42 @@ const CheckOut: React.FC = () => {
     });
   };
 
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setProcessing(true);
+    await getClientSecret();
+    if (clientSecret && elements) {
+      const payload = await stripe.confirmCardPayment(clientSecret, {
+        payment_method: {
+          card: elements.getElement(CardElement)!,
+        },
+      });
+      if (payload.error) {
+        setError(`Payment failed: ${payload.error.message}`);
+        setProcessing(false);
+      } else {
+        setSucceeded(true);
+        setError(null);
+        setProcessing(false);
+        // You may want to redirect to a different page upon successful payment
+      }
+    }
+  };
+
+  const handleChange = (event: any) => {
+    setDisabled(event.empty);
+    setError(event.error ? event.error.message : "");
+  };
+
+  const calculateSubtotal = () => {
+    return currentUser.basket.reduce((total: any, product: { price: any; }) => total + product.price, 0);
+  };
+ 
+
   return (
-    <div className="text-left  max-w-400 mx-auto  p-4 bg-slate-800 min-h-dvh md:p-20">
-       <h1 className='text-center text-2xl text-slate-200'>Payment page</h1>
-      
-      {products && products.map((item) => (
+    <div className="text-left max-w-400 mx-auto p-4 bg-slate-800 min-h-dvh md:p-20">
+      <h1 className='text-center text-2xl text-slate-200'>Payment page</h1>
+      {products.map((item) => (
         <div key={item.id} className="flex items-center mb-2">
           <div className="flex-shrink-0">
             <img src={item.url} alt="product" className="max-w-24 max-h-24 mr-4" />
@@ -54,6 +111,24 @@ const CheckOut: React.FC = () => {
           </div>
         </div>
       ))}
+      <div className="payment_method">
+        <h3>Payment Method</h3>
+        <div className="payment_card_container">
+          <form onSubmit={handleSubmit}>
+            <div className="CardElementContainer">
+              <CardElement
+                className="CardElement"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="pricecontainer">
+              <p>Pay$ {calculateSubtotal()}</p>
+            </div>
+            <button type='submit' disabled={disabled || succeeded || processing}>Pay Now</button>
+            {error && <div>{error}</div>}
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
