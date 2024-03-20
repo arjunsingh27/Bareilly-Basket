@@ -85,7 +85,7 @@ const Home: React.FC = () => {
   // }, []); // Empty dependency array to ensure the effect runs only once
 
   return (
-    <div className='home_container bg-slate-950 '>
+    <div className='home_container bg-slate-950  '>
       {loading ? (
         <LoadingContainer>
           <LoadingSpinner />

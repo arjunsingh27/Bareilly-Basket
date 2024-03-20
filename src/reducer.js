@@ -21,7 +21,7 @@ const reducer = (state, action) => {
       
       return {
         ...state,
-        currentUser: {
+         currentUser: {
           username: action.user.username,
           userId: action.user.userId,
           basket: action.user.basket,

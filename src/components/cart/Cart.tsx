@@ -8,14 +8,14 @@ import { useNavigate } from 'react-router-dom';
 const Cart: React.FC = () => {
   const navigate = useNavigate();
   const [{currentUser}, dispatch] = useStateValue();
-  // useEffect(() => {
-  //   if(currentUser.userId == null) {
-  //     setTimeout(() => {
-  //       alert("Please Login to continue");
-  //       navigate('/login');
-  //     },0);
-  //   }
-  // },[]);
+  useEffect(() => {
+    if(currentUser.userId == null) {
+      setTimeout(() => {
+        alert("Please Login to continue");
+        navigate('/login');
+      },0);
+    }
+  },[]);
 
 
   return (

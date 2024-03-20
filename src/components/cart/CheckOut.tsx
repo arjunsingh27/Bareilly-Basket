@@ -48,6 +48,7 @@ const CheckOut: React.FC = () => {
        setError(null);
        setProcessing(false);
        navigate('/orderhistory');
+   
 
     } catch (error) {
       console.error('Error fetching client secret:', error);
